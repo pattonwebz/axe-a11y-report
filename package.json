@@ -1,7 +1,7 @@
 {
   "name": "@pattonwebz/axe-a11y-report",
-  "version": "1.0.0",
-  "description": "Turn axe-core JSON results into a Markdown accessibility report, with optional GOV.UK/GDS persona-mapped findings. Framework-agnostic — library or CLI, GitHub Actions or anywhere else.",
+  "version": "1.1.0",
+  "description": "Turn axe-core JSON results into a Markdown or a polished self-contained HTML accessibility report, with optional GOV.UK/GDS persona-mapped findings. Framework-agnostic — library or CLI, GitHub Actions or anywhere else.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "commonjs",
@@ -32,6 +32,9 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "highlight.js": "^11.11.1"
   },
   "devDependencies": {
     "@types/node": "^26.1.1",

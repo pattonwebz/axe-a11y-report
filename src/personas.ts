@@ -10,6 +10,8 @@ export interface Persona {
 	userType: string;
 	identity: string;
 	needs: string;
+	/** Decorative glyph for the HTML report — always rendered aria-hidden, name/userType carry the meaning. */
+	icon: string;
 }
 
 export const personas: Persona[] = [
@@ -19,6 +21,7 @@ export const personas: Persona[] = [
 		userType: 'Blind & Screen Reader Users',
 		identity: 'Partially sighted, uses JAWS and other screen reader features',
 		needs: 'Clear semantic structure, labelled controls, and full keyboard access',
+		icon: '⠿',
 	},
 	{
 		key: 'claudia',
@@ -26,6 +29,7 @@ export const personas: Persona[] = [
 		userType: 'Low-Vision & Magnification Users',
 		identity: 'Partially sighted (glaucoma, diabetes), uses ZoomText and a large monitor',
 		needs: 'Strong contrast, predictable layout, content that reflows under magnification',
+		icon: '◑',
 	},
 	{
 		key: 'christopher',
@@ -33,6 +37,7 @@ export const personas: Persona[] = [
 		userType: 'Motor & Dexterity Users',
 		identity: 'Has rheumatoid arthritis, prefers keyboard access, exploring speech recognition',
 		needs: 'Full keyboard operability, generous touch targets, no drag-and-drop-only controls',
+		icon: '⌨',
 	},
 	{
 		key: 'pawel',
@@ -40,6 +45,7 @@ export const personas: Persona[] = [
 		userType: 'Autistic & Cognitive-Load-Sensitive Users',
 		identity: 'Autistic, experiences anxiety, prefers simpler and less cluttered interfaces',
 		needs: 'Predictable layouts, plain language, minimal motion and distraction',
+		icon: '✳',
 	},
 	{
 		key: 'ron',
@@ -47,6 +53,7 @@ export const personas: Persona[] = [
 		userType: 'Older Users',
 		identity: 'Older user with arthritis, cataracts, and hearing loss',
 		needs: 'Large text, high contrast, and simple, uncluttered forms',
+		icon: '◈',
 	},
 	{
 		key: 'saleem',
@@ -54,6 +61,7 @@ export const personas: Persona[] = [
 		userType: 'Deaf & Hard-of-Hearing Users',
 		identity: 'Profoundly deaf, BSL is his first language',
 		needs: 'Accurate captions and transcripts, and non-audio contact routes',
+		icon: '◌',
 	},
 	{
 		key: 'simone',
@@ -61,6 +69,7 @@ export const personas: Persona[] = [
 		userType: 'Dyslexic Users',
 		identity: 'Dyslexic, benefits from plain language and strong structure',
 		needs: 'Clear headings, readable typography, and uncomplicated forms',
+		icon: '❖',
 	},
 ];
 

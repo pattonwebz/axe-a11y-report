@@ -1,0 +1,420 @@
+[
+	{
+		"url": "https://pattonwebz.github.io/a11y-test-site/",
+		"results": {
+			"testEngine": {
+				"name": "axe-core",
+				"version": "4.12.1"
+			},
+			"testRunner": {
+				"name": "axe"
+			},
+			"testEnvironment": {
+				"userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/150.0.0.0 Safari/537.36",
+				"windowWidth": 1280,
+				"windowHeight": 720,
+				"orientationAngle": 0,
+				"orientationType": "landscape-primary"
+			},
+			"timestamp": "2026-07-11T02:25:54.867Z",
+			"url": "https://pattonwebz.github.io/a11y-test-site/",
+			"toolOptions": {
+				"reporter": "v1"
+			},
+			"inapplicable": [],
+			"passes": [
+				{
+					"id": "aria-hidden-body",
+					"impact": null,
+					"tags": [
+						"cat.aria",
+						"wcag2a",
+						"wcag131",
+						"wcag412",
+						"EN-301-549",
+						"EN-9.1.3.1",
+						"EN-9.4.1.2",
+						"RGAAv4",
+						"RGAA-10.8.1"
+					],
+					"description": "Ensure aria-hidden=\"true\" is not present on the document body.",
+					"help": "aria-hidden=\"true\" must not be present on the document body",
+					"helpUrl": "https://dequeuniversity.com/rules/axe/4.12/aria-hidden-body?application=playwright",
+					"nodes": [
+						{
+							"any": [
+								{
+									"id": "aria-hidden-body",
+									"data": null,
+									"relatedNodes": [],
+									"impact": "critical",
+									"message": "No aria-hidden attribute is present on document body"
+								}
+							],
+							"all": [],
+							"none": [],
+							"impact": null,
+							"html": "<body>",
+							"target": [
+								"body"
+							]
+						}
+					]
+				}
+			],
+			"incomplete": [],
+			"violations": [
+				{
+					"id": "color-contrast",
+					"impact": "serious",
+					"tags": [
+						"cat.color",
+						"wcag2aa",
+						"wcag143",
+						"TTv5",
+						"TT13.c",
+						"EN-301-549",
+						"EN-9.1.4.3",
+						"ACT",
+						"RGAAv4",
+						"RGAA-3.2.1"
+					],
+					"description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+					"help": "Elements must meet minimum color contrast ratio thresholds",
+					"helpUrl": "https://dequeuniversity.com/rules/axe/4.12/color-contrast?application=playwright",
+					"nodes": [
+						{
+							"any": [
+								{
+									"id": "color-contrast",
+									"data": {
+										"fgColor": "#bbbbbb",
+										"bgColor": "#ffffff",
+										"contrastRatio": 1.91,
+										"fontSize": "12.0pt (16px)",
+										"fontWeight": "normal",
+										"messageKey": null,
+										"expectedContrastRatio": "4.5:1"
+									},
+									"relatedNodes": [
+										{
+											"html": "<p class=\"hero\">Freshly baked accessibility violations, every deploy.</p>",
+											"target": [
+												".hero"
+											]
+										}
+									],
+									"impact": "serious",
+									"message": "Element has insufficient color contrast of 1.91 (foreground color: #bbbbbb, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+								}
+							],
+							"all": [],
+							"none": [],
+							"impact": "serious",
+							"html": "<p class=\"hero\">Freshly baked accessibility violations, every deploy.</p>",
+							"target": [
+								".hero"
+							],
+							"failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.91 (foreground color: #bbbbbb, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+						}
+					]
+				},
+				{
+					"id": "image-alt",
+					"impact": "critical",
+					"tags": [
+						"cat.text-alternatives",
+						"wcag2a",
+						"wcag111",
+						"section508",
+						"section508.22.a",
+						"TTv5",
+						"TT7.a",
+						"TT7.b",
+						"EN-301-549",
+						"EN-9.1.1.1",
+						"ACT",
+						"RGAAv4",
+						"RGAA-1.1.1"
+					],
+					"description": "Ensure <img> elements have alternative text or a role of none or presentation",
+					"help": "Images must have alternative text",
+					"helpUrl": "https://dequeuniversity.com/rules/axe/4.12/image-alt?application=playwright",
+					"nodes": [
+						{
+							"any": [
+								{
+									"id": "has-alt",
+									"data": null,
+									"relatedNodes": [],
+									"impact": "critical",
+									"message": "Element does not have an alt attribute"
+								},
+								{
+									"id": "aria-label",
+									"data": null,
+									"relatedNodes": [],
+									"impact": "critical",
+									"message": "aria-label attribute does not exist or is empty"
+								},
+								{
+									"id": "aria-labelledby",
+									"data": null,
+									"relatedNodes": [],
+									"impact": "critical",
+									"message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+								},
+								{
+									"id": "non-empty-title",
+									"data": {
+										"messageKey": "noAttr"
+									},
+									"relatedNodes": [],
+									"impact": "critical",
+									"message": "Element has no title attribute"
+								},
+								{
+									"id": "presentational-role",
+									"data": null,
+									"relatedNodes": [],
+									"impact": "critical",
+									"message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+								}
+							],
+							"all": [],
+							"none": [],
+							"impact": "critical",
+							"html": "<img src=\"bread.jpg\" width=\"200\" height=\"120\">",
+							"target": [
+								"img"
+							],
+							"failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+						}
+					]
+				},
+				{
+					"id": "region",
+					"impact": "moderate",
+					"tags": [
+						"cat.keyboard",
+						"best-practice",
+						"RGAAv4",
+						"RGAA-9.2.1"
+					],
+					"description": "Ensure all page content is contained by landmarks",
+					"help": "All page content should be contained by landmarks",
+					"helpUrl": "https://dequeuniversity.com/rules/axe/4.12/region?application=playwright",
+					"nodes": [
+						{
+							"any": [
+								{
+									"id": "region",
+									"data": {
+										"isIframe": false
+									},
+									"relatedNodes": [],
+									"impact": "moderate",
+									"message": "Some page content is not contained by landmarks"
+								}
+							],
+							"all": [],
+							"none": [],
+							"impact": "moderate",
+							"html": "<h1>Demo Bakery</h1>",
+							"target": [
+								"h1"
+							],
+							"failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+						},
+						{
+							"any": [
+								{
+									"id": "region",
+									"data": {
+										"isIframe": false
+									},
+									"relatedNodes": [],
+									"impact": "moderate",
+									"message": "Some page content is not contained by landmarks"
+								}
+							],
+							"all": [],
+							"none": [],
+							"impact": "moderate",
+							"html": "<p class=\"hero\">Freshly baked accessibility violations, every deploy.</p>",
+							"target": [
+								".hero"
+							],
+							"failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+						}
+					]
+				},
+				{
+					"id": "empty_button",
+					"impact": null,
+					"tags": [
+						"accessibility",
+						"wcag2a",
+						"wcag2aa"
+					],
+					"description": "Ensures buttons have accessible labels or content.",
+					"help": "Buttons must have accessible text, aria-label, or title attributes.",
+					"helpUrl": "https://a11ychecker.com/help1960",
+					"nodes": [
+						{
+							"any": [],
+							"all": [],
+							"none": [
+								{
+									"id": "button_is_empty",
+									"data": null,
+									"relatedNodes": [],
+									"impact": null,
+									"message": "Button is empty"
+								}
+							],
+							"impact": null,
+							"html": "<button class=\"icon-only\"></button>",
+							"target": [
+								"button.icon-only"
+							],
+							"failureSummary": "Fix all of the following:\n  Button is empty"
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"url": "https://pattonwebz.github.io/a11y-test-site/clean.html",
+		"results": {
+			"testEngine": {
+				"name": "axe-core",
+				"version": "4.12.1"
+			},
+			"testRunner": {
+				"name": "axe"
+			},
+			"testEnvironment": {
+				"userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/150.0.0.0 Safari/537.36",
+				"windowWidth": 1280,
+				"windowHeight": 720,
+				"orientationAngle": 0,
+				"orientationType": "landscape-primary"
+			},
+			"timestamp": "2026-07-11T02:25:56.208Z",
+			"url": "https://pattonwebz.github.io/a11y-test-site/clean.html",
+			"toolOptions": {
+				"reporter": "v1"
+			},
+			"inapplicable": [],
+			"passes": [
+				{
+					"id": "aria-hidden-body",
+					"impact": null,
+					"tags": [
+						"cat.aria",
+						"wcag2a",
+						"wcag131",
+						"wcag412",
+						"EN-301-549",
+						"EN-9.1.3.1",
+						"EN-9.4.1.2",
+						"RGAAv4",
+						"RGAA-10.8.1"
+					],
+					"description": "Ensure aria-hidden=\"true\" is not present on the document body.",
+					"help": "aria-hidden=\"true\" must not be present on the document body",
+					"helpUrl": "https://dequeuniversity.com/rules/axe/4.12/aria-hidden-body?application=playwright",
+					"nodes": [
+						{
+							"any": [
+								{
+									"id": "aria-hidden-body",
+									"data": null,
+									"relatedNodes": [],
+									"impact": "critical",
+									"message": "No aria-hidden attribute is present on document body"
+								}
+							],
+							"all": [],
+							"none": [],
+							"impact": null,
+							"html": "<body>\n\t<main>\n\t\t<h1>The accessible page</h1>\n\t\t<p>This page should produce zero axe-core violations — it exists so the scan report shows a passing row next to the failing ones.</p>\n\t\t<p><a href=\"index.html\">Back home</a></p>\n\t</main>\n\n\n</body>",
+							"target": [
+								"body"
+							]
+						}
+					]
+				},
+				{
+					"id": "bypass",
+					"impact": null,
+					"tags": [
+						"cat.keyboard",
+						"wcag2a",
+						"wcag241",
+						"section508",
+						"section508.22.o",
+						"TTv5",
+						"TT9.a",
+						"EN-301-549",
+						"EN-9.2.4.1",
+						"RGAAv4",
+						"RGAA-12.7.1"
+					],
+					"description": "Ensure each page has at least one mechanism for a user to bypass navigation and jump straight to the content",
+					"help": "Page must have means to bypass repeated blocks",
+					"helpUrl": "https://dequeuniversity.com/rules/axe/4.12/bypass?application=playwright",
+					"nodes": [
+						{
+							"any": [
+								{
+									"id": "header-present",
+									"data": null,
+									"relatedNodes": [
+										{
+											"html": "<h1>The accessible page</h1>",
+											"target": [
+												"h1"
+											]
+										}
+									],
+									"impact": "serious",
+									"message": "Page has a heading"
+								},
+								{
+									"id": "landmark",
+									"data": null,
+									"relatedNodes": [
+										{
+											"html": "<main>\n\t\t<h1>The accessible page</h1>\n\t\t<p>This page should produce zero axe-core violations — it exists so the scan report shows a passing row next to the failing ones.</p>\n\t\t<p><a href=\"index.html\">Back home</a></p>\n\t</main>",
+											"target": [
+												"main"
+											]
+										}
+									],
+									"impact": "serious",
+									"message": "Page has a landmark region"
+								}
+							],
+							"all": [],
+							"none": [],
+							"impact": null,
+							"html": "<html lang=\"en\">",
+							"target": [
+								"html"
+							]
+						}
+					]
+				}
+			],
+			"incomplete": [],
+			"violations": []
+		}
+	},
+	{
+		"url": "https://pattonwebz.github.io/a11y-test-site/missing.html",
+		"error": "HTTP 404 — page not scanned. Set scan-error-pages: true to audit error pages (e.g. 404 templates)."
+	}
+]

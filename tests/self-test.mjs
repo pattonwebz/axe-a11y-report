@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = join( fileURLToPath( import.meta.url ), '..', '..' );
-const { normalizeResults, buildReport } = await import( join( root, 'dist', 'index.js' ) );
+const { normalizeResults, buildReport, buildHtmlReport } = await import( join( root, 'dist', 'index.js' ) );
 
 const fixture = JSON.parse( readFileSync( join( root, 'tests', 'fixtures', 'scan-results.json' ), 'utf8' ) );
 const results = normalizeResults( fixture );
@@ -37,6 +37,31 @@ assert.ok(
 );
 
 console.log( 'Library API: OK' );
+
+// HTML report: self-contained, all seven named GDS personas present, malicious
+// input from a hostile results file stays inert (escaped), not live markup.
+const htmlFixture = JSON.parse(
+	readFileSync( join( root, 'tests', 'fixtures', 'html-sample-results.json' ), 'utf8' )
+);
+const html = buildHtmlReport( normalizeResults( htmlFixture ), { title: 'Self-test report' } );
+assert.ok( html.startsWith( '<!doctype html>' ), 'HTML report starts with a doctype' );
+assert.ok( html.includes( 'Self-test report' ), 'title is rendered' );
+for ( const name of [ 'Ashleigh', 'Claudia', 'Christopher', 'Pawel', 'Ron', 'Saleem', 'Simone' ] ) {
+	assert.ok( html.includes( name ), `${ name } appears in the Personas page` );
+}
+
+const maliciousFixture = JSON.parse(
+	readFileSync( join( root, 'tests', 'fixtures', 'malicious-results.json' ), 'utf8' )
+);
+const maliciousHtml = buildHtmlReport( normalizeResults( maliciousFixture ) );
+assert.ok(
+	! /<script[^>]*>[^<]*alert/.test( maliciousHtml ),
+	'a script tag from a hostile results file is not rendered live'
+);
+assert.ok( ! /<img[^>]+onerror=/.test( maliciousHtml ), 'an onerror attribute from a hostile results file is not rendered live' );
+assert.ok( maliciousHtml.includes( '&lt;script' ) || maliciousHtml.includes( '&lt;img' ), 'the hostile input is present, escaped' );
+
+console.log( 'HTML report: OK' );
 
 // CLI: same fixture, --out writes a file, exit code reflects fail-on.
 const tmp = mkdtempSync( join( tmpdir(), 'axe-a11y-report-self-test-' ) );
@@ -75,6 +100,42 @@ try {
 		{ stdio: 'pipe' }
 	);
 	console.log( 'CLI: OK' );
+
+	// CLI: --format=html (also exercised via --out ending in .html, the inferred path).
+	const htmlOut = join( tmp, 'report.html' );
+	execFileSync(
+		'node',
+		[
+			join( root, 'dist', 'cli.js' ),
+			`--results-file=${ join( root, 'tests', 'fixtures', 'html-sample-results.json' ) }`,
+			'--fail-on=none',
+			`--out=${ htmlOut }`,
+		],
+		{ stdio: 'pipe' }
+	);
+	const writtenHtml = readFileSync( htmlOut, 'utf8' );
+	assert.ok( writtenHtml.startsWith( '<!doctype html>' ), '--out=*.html infers --format=html' );
+	assert.ok( writtenHtml.includes( 'Ashleigh' ), 'CLI HTML output includes persona names' );
+
+	let githubSummaryRejected = false;
+	try {
+		execFileSync(
+			'node',
+			[
+				join( root, 'dist', 'cli.js' ),
+				`--results-file=${ join( root, 'tests', 'fixtures', 'html-sample-results.json' ) }`,
+				'--format=html',
+				'--github-summary',
+			],
+			{ stdio: 'pipe' }
+		);
+	} catch ( err ) {
+		githubSummaryRejected = true;
+		assert.equal( err.status, 2, '--github-summary with --format=html is a usage error' );
+	}
+	assert.ok( githubSummaryRejected, '--github-summary + --format=html should be rejected' );
+
+	console.log( 'CLI HTML: OK' );
 } finally {
 	rmSync( tmp, { recursive: true, force: true } );
 }

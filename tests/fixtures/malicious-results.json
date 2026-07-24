@@ -1,0 +1,35 @@
+[
+	{
+		"url": "https://example.com/\"><script>alert(2)</script>",
+		"results": {
+			"testEngine": {
+				"name": "axe-core",
+				"version": "4.12.1"
+			},
+			"timestamp": "2026-07-11T00:00:00.000Z",
+			"url": "https://example.com/",
+			"violations": [
+				{
+					"id": "bad<script>alert(1)</script>rule",
+					"impact": "serious",
+					"tags": [
+						"wcag2aa\"><img src=x onerror=alert(3)>"
+					],
+					"description": "desc with <b>markup</b> & \"quotes\"",
+					"help": "help with <iframe> & chars",
+					"helpUrl": "javascript:alert(4)",
+					"nodes": [
+						{
+							"html": "<div onclick=\"x()\">bad</div>",
+							"target": [
+								"div[data-x=\"<script>\"]"
+							],
+							"failureSummary": "Fix: <script>alert(5)</script>"
+						}
+					]
+				}
+			],
+			"passes": []
+		}
+	}
+]

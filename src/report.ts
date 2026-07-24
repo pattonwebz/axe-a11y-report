@@ -24,7 +24,7 @@ export interface Report {
 	failedUrls: number;
 }
 
-function impactRank( impact: string | null | undefined ): number {
+export function impactRank( impact: string | null | undefined ): number {
 	return IMPACT_ORDER.indexOf( ( impact ?? 'minor' ) as Impact );
 }
 
