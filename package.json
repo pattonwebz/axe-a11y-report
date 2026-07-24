@@ -1,0 +1,41 @@
+{
+  "name": "@pattonwebz/axe-a11y-report",
+  "version": "1.0.0",
+  "description": "Turn axe-core JSON results into a Markdown accessibility report, with optional GOV.UK/GDS persona-mapped findings. Framework-agnostic — library or CLI, GitHub Actions or anywhere else.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "commonjs",
+  "bin": {
+    "axe-a11y-report": "dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "axe-core",
+    "accessibility",
+    "a11y",
+    "wcag",
+    "report",
+    "personas"
+  ],
+  "author": "William Patton",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pattonwebz/axe-a11y-report.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "axe-core": "^4.12.1",
+    "typescript": "^5.9.3"
+  }
+}
